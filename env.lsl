@@ -10,6 +10,15 @@
 		More work planned soon, esp. in regard to pathfinding.
 	*/
 
+	// fetches a current timestamp with millsecond accuracy
+	float rrGetTimestampFloat(){
+		float milliseconds = (float)("0" + llGetSubString(
+			llList2String(llParseString2List(llGetTimestamp(), [":"], []), 2), 2, -2
+		));
+		float seconds = llGetWallclock();
+		return seconds+milliseconds;
+	}
+
     /*
         Raycasting
     */
