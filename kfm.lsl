@@ -3,7 +3,7 @@
     #define RR_KFM
 
     /*
-        kfl.lsl
+        kfm.lsl
 
         Contains convenience functions for keyframed motion (KFM) functionality.
     */
