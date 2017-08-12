@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<script_library>
+	<keywords>
+		<!-- RIFE -->
+		<!-- debug.lsl -->
+		<integer_constant name="RR_DBG_NONE" desc="No debugging output" />
+		<integer_constant name="RR_DBG_DEBUG" desc="Emit &amp; $DEBUG messages" />
+		<integer_constant name="RR_DBG_ERROR" desc="Emit &amp; $ERROR messages" />
+		<integer_constant name="RR_DBG_FATAL" desc="Emit &amp; compile $FATAL messages" />
+		<integer_constant name="RR_DBG_INFO" desc="Emit &amp; compile $INFO messages" />
+		<integer_constant name="RR_DBG_TRACE" desc="Emit &amp; compile $TRACE messages" />
+		<integer_constant name="RR_DBG_WARN" desc="Emit &amp; compile $WARN messages" />
+		<integer_constant name="RR_DBG_PRESET_DEFAULT" desc="(RR_DBG_ERROR | RR_DBG_FATAL)" />
+		<integer_constant name="RR_DBG_PRESET_QUIET" desc="(RR_DBG_NONE)" />
+		<integer_constant name="RR_DBG_PRESET_DEV" desc="(RR_DBG_ERROR | RR_DBG_FATAL | RR_DBG_DEBUG | RR_DBG_WARN)" />
+		<integer_constant name="RR_DBG_PRESET_TRACE" desc="(RR_DBG_ERROR | RR_DBG_FATAL | RR_DBG_DEBUG | RR_DBG_WARN | RR_DBG_INFO | RR_DBG_TRACE)" />
+		<integer_constant name="DEBUGLEVEL" desc="Rife Feature: Sets debug output level for script." />
+		<integer_constant name="RR_DBG_FUNC" desc="Allows overriding debug output function (ex: '#define RR_DBG_FUNC(...) custom_debug( __VA_ARGS__ )')" />
+		<!-- env.lsl -->
+		<integer_constant name="RR_RC_REJECT_AGENTS" desc="Equivalent to RC_REJECT_AGENTS" />
+		<integer_constant name="RR_RC_REJECT_PHYSICAL" desc="Equivalent to RR_RC_REJECT_PHYSICAL" />
+		<integer_constant name="RR_RC_REJECT_NONPHYSICAL" desc="Equivalent to RR_RC_REJECT_NONPHYSICAL" />
+		<integer_constant name="RR_RC_REJECT_LAND" desc="Equivalent to RR_RC_REJECT_LAND" />
+		<integer_constant name="RR_RC_DETECT_PHANTOM" desc="If provided to an RR raycast helper, will enable detection of phantom objects (disabeld by default)" />
+		<!-- http.lsl -->
+		<integer_constant name="RR_HTTP_MULTIVALIDATE" desc="Define above Rife include to enable automatic validation of multiple possible HTTP responses while using RR HTTP helper functions." />
+		<integer_constant name="RR_HTTP_REQUEST_LSL_BODY_MAXLEN_BYT" desc="Specifies maximum number of bytes allowed in LSL http_request event body." />
+		<integer_constant name="RR_HTTP_REQUEST_LSL_BODY_MAXLEN_CHR" desc="Specifies maximum number of characters allowed in LSL http_request event body." />
+		<!-- math.lsl -->
+		<integer_constant name="EPSILON" desc="Very small (effectively zero) value, used in float comparisons." />
+		<string_constant name="rrGetCastRayErrorDesc" desc="Test function description" />
+		<!-- /RIFE -->
+
+		<preprocessor name="#assert" desc="Allows definition of preprocessor variables that do not conflict with names in the program name space" />
+		<preprocessor name="#define" desc="When the preprocessor encounters this directive, it replaces any occurrence of identifier in the rest of the code by replacement" />
+		<preprocessor name="#elif" desc="Specify some condition to be met in order for the portion of code they surround to be compiled" />
+		<preprocessor name="#else" desc="Specify some condition to be met in order for the portion of code they surround to be compiled" />
+		<preprocessor name="#endif" desc="Closes an #if directive" />
+		<preprocessor name="#error" desc="Aborts the compilation process when it is found, generating a compilation the error that can be specified as its parameter" />
+		<preprocessor name="#ident" desc="Inserts a comment into the generated script" />
+		<preprocessor name="#sccs" desc="Inserts a comment into the generated script" />
+		<preprocessor name="#if" desc="Specifies some condition to be met in order for the portion of code they surround to be compiled" />
+		<preprocessor name="#ifdef" desc="Allows a section of a program to be compiled only if the macro that is specified as the parameter has been defined, no matter which its value is" />
+		<preprocessor name="#ifndef" desc="The code between #ifndef and #endif directives is only compiled if the specified identifier has not been previously defined" />
+		<preprocessor name="#import" desc="Instructs the preprocessor to look for type library files first in the directory of the file that contains the #import statement, and then in the directories of whatever files that include (#include) that file" />
+		<preprocessor name="#include" desc="When the preprocessor finds an #include directive it replaces it by the entire content of the specified file" />
+		<preprocessor name="#include_next Instructs the preprocessor to continue searching for the specified file name, and to include the subsequent instance encountered after the current directory" />
+		<preprocessor name="#line" desc="Controls the line number and file name" />
+		<preprocessor name="#pragma" desc="This directive is used to specify diverse options to the compiler. These options are specific for the platform and the compiler you use" />
+		<preprocessor name="#unassert" desc="Closes an #assert directive" />
+		<preprocessor name="#undef" desc="Undefines #define macro" />
+		<preprocessor name="#warning" desc="Generate a level one warning from a specific location in your code" />
+		<preprocessor name="#switch" desc="Allows selection among multiple sections of code, depending on the value of an integral expression" />
+		<preprocessor name="#case" desc="Used with #switch in a union" />
+		<preprocessor name="#break" desc="Stops processing further lines in a #switch directive" />
+	</keywords>
+
+	<!-- RIFE -->
+	<functions>
+		<function name="rrGetCastRayErrorName" sleep="0.0" energy="0.0"
+			desc="Fetch a friendly name for a raycast error integer." />
+	</functions>
+	<!-- /RIFE -->
+</script_library>

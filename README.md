@@ -35,6 +35,10 @@ The author's preferene is to additionally create and place a 'loader script' in 
 
 `#include "rife.lsl"`
 
+#### Syntax Highlighting for Rife Functionality
+
+The `scriptlibrary_preproc.xml` file can be dropped over the one present in your Firestorm installation directory's `app_settings` subdirectory. This will add some of Rife's constants to the editor's highlighting & tooltips for convenience. I will be increasing the scope of this over time to include the provided functions, but it is not currently complete.
+
 ### Features
 
 Rife includes several new constants, macros, functions, and even some events to help you get common script tasks done with minimal overhead. Many additions are simply helper functions that implement commonly-desired functionality, like fetching the first result from a raycast, or easily getting the value of a key-value strided list, given a key.
