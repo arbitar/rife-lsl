@@ -1,6 +1,5 @@
 #define USE_LAZY_LISTS
 
-#include "constants.lsl"
 #include "debug.lsl"
 #include "env.lsl"
 #include "http.lsl"
