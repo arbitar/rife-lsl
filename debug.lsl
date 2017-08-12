@@ -35,9 +35,9 @@
 
 		These presets are also bitfields (of the standard constants), so they can be easily mutated.
 
-		To override the debug output mechanism, redefine RR_DEBUG_FN like this:
+		To override the debug output mechanism, redefine RR_DBG_FUNC like this:
 
-			#define RR_DEBUG_FN(...) local_debug_function( __VA_ARGS__ )
+			#define RR_DBG_FUNC(...) local_debug_function( __VA_ARGS__ )
 		
 		This will route all debug output to a function you provide, called local_debug_function.
 		You can name it whatever you'd like.
@@ -90,14 +90,14 @@
 	/*
 		Customizable debug output functions.
 		llOwnerSay is the default.
-		If user overloads RR_DEBUG_FN, they can do whatever they want.
+		If user overloads RR_DBG_FUNC, they can do whatever they want.
 		Otherwise, if user defines DEBUGLOUD, it'll say it on channel 0.
 	*/
-	#ifndef RR_DEBUG_FN
+	#ifndef RR_DBG_FUNC
 		#ifndef DEBUGLOUD
-			#define RR_DEBUG_FN(...) llOwnerSay( __VA_ARGS__ )
+			#define RR_DBG_FUNC(...) llOwnerSay( __VA_ARGS__ )
 		#else
-			#define RR_DEBUG_FN(...) llSay(0, __VA_ARGS__ )
+			#define RR_DBG_FUNC(...) llSay(0, __VA_ARGS__ )
 		#endif
 	#endif
 
@@ -106,37 +106,37 @@
 	*/
 
 	#if ((DEBUGLEVEL) & RR_DBG_DEBUG) == RR_DBG_DEBUG
-		#define $DEBUG(...) RR_DEBUG_FN("[DEBUG] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $DEBUG(...) RR_DBG_FUNC("[DEBUG] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $DEBUG(...)
 	#endif
 
 	#if ((DEBUGLEVEL) & RR_DBG_ERROR) == RR_DBG_ERROR
-		#define $ERROR(...) RR_DEBUG_FN("[ERROR] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $ERROR(...) RR_DBG_FUNC("[ERROR] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $ERROR(...)
 	#endif
 
 	#if ((DEBUGLEVEL) & RR_DBG_FATAL) == RR_DBG_FATAL
-		#define $FATAL(...) RR_DEBUG_FN("[FATAL] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $FATAL(...) RR_DBG_FUNC("[FATAL] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $FATAL(...)
 	#endif
 
 	#if ((DEBUGLEVEL) & RR_DBG_INFO) == RR_DBG_INFO
-		#define $INFO(...) RR_DEBUG_FN("[INFO] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $INFO(...) RR_DBG_FUNC("[INFO] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $INFO(...)
 	#endif
 
 	#if ((DEBUGLEVEL) & RR_DBG_TRACE) == RR_DBG_TRACE
-		#define $TRACE(...) RR_DEBUG_FN("[TRACE] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $TRACE(...) RR_DBG_FUNC("[TRACE] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $TRACE(...)
 	#endif
 
 	#if ((DEBUGLEVEL) & RR_DBG_WARN) == RR_DBG_WARN
-		#define $WARN(...) RR_DEBUG_FN("[WARN] "+llList2CSV([ (string)__VA_ARGS__ ]))
+		#define $WARN(...) RR_DBG_FUNC("[WARN] "+llList2CSV([ (string)__VA_ARGS__ ]))
 	#else
 		#define $WARN(...)
 	#endif
