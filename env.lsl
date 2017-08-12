@@ -23,6 +23,8 @@
         Raycasting
     */
 
+	// thse definitions are duplicated to support addition of RR_RC_DETECT_PHANTOM without
+	//  potentially clobbering eventual additions to the LL definitions.
 	#define RR_RC_REJECT_AGENTS 1
 	#define RR_RC_REJECT_PHYSICAL 2
 	#define RR_RC_REJECT_NONPHYSICAL 4
