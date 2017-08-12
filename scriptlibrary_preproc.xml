@@ -54,11 +54,4 @@
 		<preprocessor name="#case" desc="Used with #switch in a union" />
 		<preprocessor name="#break" desc="Stops processing further lines in a #switch directive" />
 	</keywords>
-
-	<!-- RIFE -->
-	<functions>
-		<function name="rrGetCastRayErrorName" sleep="0.0" energy="0.0"
-			desc="Fetch a friendly name for a raycast error integer." />
-	</functions>
-	<!-- /RIFE -->
 </script_library>
