@@ -90,7 +90,7 @@
 	#define register_global_collision_end 	register_global_counted(collision_end)
 
 	#define register_global_state_entry 	register_global_generic(state_entry)
-	#define register_global_state_exist 	register_global_generic(state_exit)
+	#define register_global_state_exit 	register_global_generic(state_exit)
 
 	#define register_global(A) register_global_##A
 #endif
