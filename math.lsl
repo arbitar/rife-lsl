@@ -29,6 +29,12 @@
 		return v;
 	}
 
+	// LSL only permits modulo on integers:
+	//  provide a helper to duplicate functionality for floats too
+	float rrModFloat(float a,float b){
+		return a - (llFloor(a / b) * b);
+	}
+
 	/*
 		Intersection tests
 	*/
