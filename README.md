@@ -3,7 +3,7 @@
 
 ### Introduction
 
-Rife is a library for the Linden Scripting Language (LSL), which relies on the LSL preprocessor functionality included in the third-party [Firestorm viewer](http://www.firestormviewer.org/).
+Rife is ~~preprocessor abuse~~ a library for the Linden Scripting Language (LSL), which relies on the LSL preprocessor functionality included in the third-party [Firestorm viewer](http://www.firestormviewer.org/).
 
 The LSL preprocessor adds C-style preprocessor macros to the editor, allowing scripters to use familiar macros to improve their LSL script build process, including the ability to `#include` other LSL files from disk.
 
