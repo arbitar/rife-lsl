@@ -15,15 +15,15 @@ The name *Rife* was chosen to allude to *Rife's Raft*, from the book *Snow Crash
 
 #### Into new on-disk LSL library
 
-First, create a folder on your local computer where you would like to store LSL scripts. I reccomend something easy to access, like `C:\LSL` (Windows), `~/lsl` (Linux/Mac).
+First, create a folder on your local computer where you would like to store LSL scripts. I recommend something easy to access, like `C:\LSL` (Windows), `~/lsl` (Linux/Mac).
 
-Next you should do is configure Firestorm's LSL preprocessor. Open Firestorm, and access its Preferences window (`Ctrl + P`). Select the `Firestorm` tab, followed by the `Build 1` sub-tab. Near the bottom, you will see a collection of checkboxes that control the LSL preprocessor function. Enable, at minimum, the LSL preprocessor, the script optimizer, and includes from local disk. Set the preprocessor include path to match the folder you created just a few moments ago.
+Next you should configure Firestorm's LSL preprocessor. Open Firestorm, and access its Preferences window (`Ctrl + P`). Select the `Firestorm` tab, followed by the `Build 1` sub-tab. Near the bottom, you will see a collection of checkboxes that control the LSL preprocessor function. Enable, at minimum, the LSL preprocessor, the script optimizer, and includes from local disk. Set the preprocessor include path to match the folder you created just a few moments ago.
 
 Next, follow the instructions for 'into existing on-disk LSL library'!
 
 #### Into existing on-disk LSL library
 
-If you have an existing on-disk LSL library include location configured for Firestorm's LSL preprocesor, simply clone this repository into a subdirectory of it:
+If you have an existing on-disk LSL library include location configured for Firestorm's LSL preprocessor, simply clone this repository into a subdirectory of it:
 
 `git clone https://github.com/arbitar/rife-lsl`
 
@@ -31,7 +31,7 @@ It can then be used in a new LSL script by prepending the include to the top of 
 
 `#include "rife-lsl/main.lsl"`
 
-The author's preferene is to additionally create and place a 'loader script' in the root of the LSL library directory, typically named `rife.lsl`, with only the rife include command above. Then, the library can be included by using a shorter form:
+The author's preference is to additionally create and place a 'loader script' in the root of the LSL library directory, typically named `rife.lsl`, with only the rife include command above. Then, the library can be included by using a shorter form:
 
 `#include "rife.lsl"`
 
