@@ -81,16 +81,16 @@
 	#define register_global_http_response \
 		http_response(key k,integer s,list m,string b){ global_http_response(k,s,m,b); }
 
-	#define register_global_touch_start		register_global_counted(touch_start)
-	#define register_global_touch 			register_global_counted(touch)
-	#define register_global_touch_end 		register_global_counted(touch_end)
+	#define register_global_touch_start register_global_counted(touch_start)
+	#define register_global_touch register_global_counted(touch)
+	#define register_global_touch_end register_global_counted(touch_end)
 
 	#define register_global_collision_start register_global_counted(collision_start)
-	#define register_global_collision 		register_global_counted(collision)
-	#define register_global_collision_end 	register_global_counted(collision_end)
+	#define register_global_collision register_global_counted(collision)
+	#define register_global_collision_end register_global_counted(collision_end)
 
-	#define register_global_state_entry 	register_global_generic(state_entry)
-	#define register_global_state_exit 	register_global_generic(state_exit)
+	#define register_global_state_entry register_global_generic(state_entry)
+	#define register_global_state_exit register_global_generic(state_exit)
 
 	#define register_global(A) register_global_##A
 #endif
