@@ -8,8 +8,8 @@
 		Contains HTTP communication helpers.
 	*/
 
-	#define RR_HTTP_REQUEST_LSL_BODY_MAXLEN_BYT 2048
-	#define RR_HTTP_REQUEST_LSL_BODY_MAXLEN_CHR 1024
+  #define RR_HTTP_REQUEST_BODY_MAXLEN_BYT 2048
+	#define RR_HTTP_REQUEST_BODY_MAXLEN_CHR 1024
 
 	#ifndef RR_HTTP_MULTIVALIDATE
 		key __RR_HTTP_LSRID;
@@ -17,12 +17,49 @@
 		list __RR_HTTP_LSRIDS;
 	#endif
 
+  // If we want to send custom headers, we use the
+  // setter rrHTTPSetHeader() function to inject them
+  // into this array. 
+  list CUSTOM_HEADERS = [];
+
+  key rrHTTPDelete(string url) {
+    list headers = [
+      HTTP_METHOD, "DELETE",
+      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
+    ];
+    return rrHTTPSendRequest(url, headers, "");
+  }
+
+  key rrHTTPGet(string url) {
+    list headers = [HTTP_METHOD, "GET"];
+    return rrHTTPSendRequest(url, headers, "");
+  }
+
+  key rrHTTPPost(string url, list data) {
+    list headers = [
+      HTTP_METHOD, "POST",
+      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
+    ];
+    string parsedData = httpList2QueryString(pl_data);
+    return rrHTTPSendRequest(url, headers, parsedData);
+  }
+
+  key rrHTTPPut(string url, list data) {
+    list headers = [
+      HTTP_METHOD, "PUT",
+      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
+    ];
+    string parsedData = httpList2QueryString(pl_data);
+    return rrHTTPSendRequest(url, headers, parsedData);
+  }
+
 	key rrHTTPRequest(string url, list data, string body){
-		if(rrContains("agni.lindenlab.com:12046")
-		&& llStringLength(body) > RR_HTTP_REQUEST_BODY_MAXLEN){
+		if(rrStringContains(url, "agni.lindenlab.com:12046")
+		  && llStringLength(body) > RR_HTTP_REQUEST_BODY_MAXLEN_BYT
+    ){
 			$ERROR("HTTP request being transmitted to in-world URL exceeds maximum recipient body "
 				+"length of "+(string)RR_HTTP_REQUEST_BODY_MAXLEN_BYT+" bytes ("+
-				(string)RR_HTTP_REQUEST_BOXY_MAXLEN_CHR+" characters /w Mono). Request cancelled.");
+				(string)RR_HTTP_REQUEST_BODY_MAXLEN_CHR+" characters /w Mono). Request cancelled.");
 
 			return NULL_KEY;
 		}
@@ -37,14 +74,42 @@
 		#endif
 	}
 
-	integer rrValidateHTTPResponse(key reqid){
+  key rrHTTPSendRequest(string url, list params, string body) {
+    // Set custom headers
+    integer hlen = llGetListLength(CUSTOM_HEADERS);
+    if ((hlen >= 2) && (hlen % 2 == 0)) {
+      integer ptr;
+      for (ptr = 0; ptr < hlen; ptr+=2) {
+        params += [
+          HTTP_CUSTOM_HEADER,
+          llList2String(CUSTOM_HEADERS, ptr),
+          llList2String(CUSTOM_HEADERS, ptr+1)
+        ];
+      }
+    }
+    CUSTOM_HEADERS = [];
+  
+    $TRACE("\n\n" + url + "\n"
+      + llDumpList2String(params, " # ") + "\n"
+      + body + "\n"
+    );
+
+    return rrHTTPRequest(url, params, body);
+  }
+
+  // Add a custom header to be added to the request.
+  // CUSTOM_HEADERS is emptied after the request is sent.
+  rrHTTPSetHeader(string name, string value) {
+    CUSTOM_HEADERS += [name, value];
+  }
+
+	integer rrHTTPValidateResponse(key reqid){
 		#ifndef RR_HTTP_MULTIVALIDATE
 			return (reqid == __RR_HTTP_LSRID);
 		#else
 			integer index = llListFindList(__RR_HTTP_LSRIDS, [reqid]);
 			if(index==-1)
 				return false;
-			
 			__RR_HTTP_LSRIDS = llDeleteSubList(__RR_HTTP_LSRIDS, index, index);
 			return TRUE;
 		#endif
