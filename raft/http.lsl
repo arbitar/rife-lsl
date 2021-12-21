@@ -63,15 +63,19 @@
 		list prepared = ["_TYPE", type]+data;
 		string packet = llList2Json(JSON_OBJECT, prepared);
 
-		if(llStringLength(packet) > 2048)
+		if(llStringLength(packet) > 2048) {
+      packet = "ERROR";
+    }
+    return packet;
 	}
 
 	// decode a packet if valid
 	list rrDecodePacket(string packed){
 		list unpacked = llJson2List(packed);
 		string type = rrGetPacketType(unpacked);
-		if(type == "")
-			return [];
+		if(type == "") {
+      return [];
+    }
 		
 		return unpacked;
 	}
@@ -79,8 +83,9 @@
 	// decode a packet if valid and matching type
 	list rrDecodePacketOfType(string packed, string type){
 		list decoded = rrDecodePacket(packed);
-		if(rrGetPacketType(decoded) != type)
-			return [];
+		if(rrGetPacketType(decoded) != type) {
+      return [];
+    }
 
 		return decoded;
 	}
@@ -104,8 +109,9 @@
 	list rrDecodePacketBundle(string packed){
 		list bundle = rrDecodePacket(packed);
 		string packets = rrAssocListValue(packet, "packets");
-		if(packets == "")
-			return [];
+		if(packets == "") {
+      return [];
+    }
 		
 		return llJson2List(packets);
 	}
