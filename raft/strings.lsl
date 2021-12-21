@@ -70,8 +70,11 @@
 	// functional implementation of rrGetSubStringWithin
 	string __RR_STRING_SUBSTRINGWITHIN(string HAYSTACK,string BEFORE,string AFTER,integer FINAL){
 		integer start = -1;
-		if(FINAL) start = rrFinalSubStringIndex(HAYSTACK,BEFORE);
-		else start = llSubStringIndex(HAYSTACK,BEFORE);
+		if (FINAL) {
+      start = rrFinalSubStringIndex(HAYSTACK,BEFORE);
+    } else {
+      start = llSubStringIndex(HAYSTACK,BEFORE);
+    }
 		return llGetSubString(HAYSTACK,
 			start+llStringLength(BEFORE),
 			llSubStringIndex(llGetSubString(HAYSTACK,start,-1),AFTER)+(start-1)

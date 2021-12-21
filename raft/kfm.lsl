@@ -45,9 +45,11 @@
   rrSetGlobalKeyframedMotion(list keyframes,list options){
     integer optData = KFM_TRANSLATION|KFM_ROTATION;
     integer i;
-    for(i=0; i<llGetListLength(options); i+=2)
-      if(llList2Integer(options,i)==KFM_DATA)
+    for(i=0; i<llGetListLength(options); i+=2) {
+      if(llList2Integer(options,i)==KFM_DATA) {
         optData = llList2Integer(options,i+1);
+      }
+    }
 
     keyframes = rrGlobalToRelativeKeyframes(keyframes,optData);
     llSetKeyframedMotion(keyframes,options);
