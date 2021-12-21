@@ -17,15 +17,23 @@
 
 	// clamp float value v between min and max
 	float rrClampF(float min,float max,float v){
-		if(v<min) return min;
-		if(v>max) return max;
+		if(v<min) {
+      return min;
+    }
+		if(v>max) {
+      return max;
+    }
 		return v;
 	}
 
 	// clamp integer value i between min and max
 	integer rrClampI(integer min,integer max,integer v){
-		if(v<min) return min;
-		if(v>max) return max;
+		if(v<min) {
+      return min;
+    }
+		if(v>max) {
+      return max;
+    }
 		return v;
 	}
 
@@ -75,10 +83,17 @@
 					+(t3*llList2Vector(v,abPSplineIndex(f+2,l,loop)))
 			)/6.0;
 	}
+
 	integer rrPIndex(integer index,integer length,integer loop){
-		if(loop) return index%length;
-		if(index<0) return 0;
-		if(index>--length) return length;
+		if(loop) {
+      return index%length;
+    }
+		if(index<0) {
+      return 0;
+    }
+		if(index>--length) {
+      return length;
+    }
 		return index;
 	}
 
@@ -114,8 +129,9 @@
 		integer i;
 		for(i=0; i<length; i++){
 			output += llGetSubString(original,i,i);
-			if((i%3)==(length+2)%3 && i!=(length-1))
-				output += ",";
+			if((i%3)==(length+2)%3 && i!=(length-1)) {
+        output += ",";
+      }
 		}
 		
 		return output;
