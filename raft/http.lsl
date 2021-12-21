@@ -17,6 +17,11 @@
 		list __RR_HTTP_LSRIDS;
 	#endif
 
+  string HTTP_MIMETYPE_PLAIN_UTF8 = "text/plain;charset=utf-8";
+  string HTTP_MIMETYPE_FORM_URLENCODED = "application/x-www-form-urlencoded";
+  string HTTP_MIMETYPE_JSON = "application/json";
+  
+
   // If we want to send custom headers, we use the
   // setter rrHTTPSetHeader() function to inject them
   // into this array. 
@@ -24,8 +29,7 @@
 
   key rrHTTPDelete(string url) {
     list headers = [
-      HTTP_METHOD, "DELETE",
-      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
+      HTTP_METHOD, "DELETE"
     ];
     return rrHTTPSendRequest(url, headers, "");
   }
@@ -35,22 +39,46 @@
     return rrHTTPSendRequest(url, headers, "");
   }
 
-  key rrHTTPPost(string url, list data) {
-    list headers = [
-      HTTP_METHOD, "POST",
-      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
-    ];
-    string parsedData = httpList2QueryString(pl_data);
-    return rrHTTPSendRequest(url, headers, parsedData);
+  /**
+  * Convert a list into a series of URL encoded (key=value) pairs.
+  *
+  * data must contain an even number of elements: odd elements are field
+  * names while even indexed elements are the corresponding data:
+  * [
+  *    "name", "SecondLifer Resident",
+  *    "key", "12345678-1234-1234-1234-123456789123"
+  * ]
+  */
+  string rrHTTPList2QueryString(list data) {
+    string queryString = "";
+    
+    integer ptr;
+    integer count = (integer)llGetListLength(data);
+    
+    for (ptr = 0; ptr < count; ptr += 2) {
+      queryString = queryString
+        + llEscapeURL(llList2String(data, ptr))
+        + "="
+        + llEscapeURL(llList2String(data, ptr+1));
+      if (ptr+2 < count) {
+        queryString = queryString + "&";
+      }
+    }
+    return queryString;
   }
 
-  key rrHTTPPut(string url, list data) {
+  key rrHTTPPost(string url, string data) {
     list headers = [
-      HTTP_METHOD, "PUT",
-      HTTP_MIMETYPE, HTTP_MIMETYPE_FORM_URLENCODED
+      HTTP_METHOD, "POST"
     ];
-    string parsedData = httpList2QueryString(pl_data);
-    return rrHTTPSendRequest(url, headers, parsedData);
+    return rrHTTPSendRequest(url, headers, data);
+  }
+
+  key rrHTTPPut(string url, string data) {
+    list headers = [
+      HTTP_METHOD, "PUT"
+    ];
+    return rrHTTPSendRequest(url, headers, data);
   }
 
 	key rrHTTPRequest(string url, list data, string body){
@@ -77,18 +105,22 @@
   key rrHTTPSendRequest(string url, list params, string body) {
     // Set custom headers
     integer hlen = llGetListLength(CUSTOM_HEADERS);
+
+    string mimeType = "";
     if ((hlen >= 2) && (hlen % 2 == 0)) {
       integer ptr;
       for (ptr = 0; ptr < hlen; ptr+=2) {
+        string name = llList2String(CUSTOM_HEADERS, ptr);
+        string value = llList2String(CUSTOM_HEADERS, ptr+1);
+
         params += [
           HTTP_CUSTOM_HEADER,
-          llList2String(CUSTOM_HEADERS, ptr),
-          llList2String(CUSTOM_HEADERS, ptr+1)
+          name, value
         ];
       }
     }
     CUSTOM_HEADERS = [];
-  
+
     $TRACE("\n\n" + url + "\n"
       + llDumpList2String(params, " # ") + "\n"
       + body + "\n"
@@ -101,6 +133,10 @@
   // CUSTOM_HEADERS is emptied after the request is sent.
   rrHTTPSetHeader(string name, string value) {
     CUSTOM_HEADERS += [name, value];
+  }
+
+  rrHTTPSetMimeType(string mimeType) {
+    CUSTOM_HEADERS += [HTTP_MIMETYPE, mimeType];
   }
 
 	integer rrHTTPValidateResponse(key reqid){
