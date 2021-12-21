@@ -1,3 +1,4 @@
+#include "raft/strings.lsl"
 #include "raft/debug.lsl"
 #include "raft/env.lsl"
 #include "raft/http.lsl"
@@ -7,4 +8,3 @@
 #include "raft/logic.lsl"
 #include "raft/macros.lsl"
 #include "raft/math.lsl"
-#include "raft/strings.lsl"
