@@ -11,8 +11,9 @@
   // In strided key-value pair lists, fetch the value given the key
   string rrAssocListValue(list assoc, string keyS){
     integer index = llListFindList(assoc, [keyS]);
-    if(index==-1)
+    if(index==-1) {
       return "";
+    }
     
     return llList2String(assoc, index+1);
   }

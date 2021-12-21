@@ -75,6 +75,7 @@
 					+(t3*llList2Vector(v,abPSplineIndex(f+2,l,loop)))
 			)/6.0;
 	}
+
 	integer rrPIndex(integer index,integer length,integer loop){
 		if(loop) return index%length;
 		if(index<0) return 0;
