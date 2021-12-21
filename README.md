@@ -47,16 +47,15 @@ Rife also includes a full debug system with multiple levels of output that can b
 
 File | Functionality
 --- | ---
-debug.lsl | Debug output helpers with support for multiple output levels
-env.lsl | Environmental detection & information; raycasting, pathfinding, time & date, etc.
-http.lsl | HTTP & communication helpers, simple packet encoder/decoder/bundlers.
-kfm.lsl | Keyframed Motion helpers; supporting specifying global coordinates instead of relative coordinates for KFM commands.
-listargs.lsl | Support for handling llSetPrimitiveParam-style key-multivalue strided configuration lists, including the ability to merge user-provided configuration lists with defaults.
-lists.lsl | List management helpers, including quick functions to get key-value 'associative' list pair data by key.
-logic.lsl | Some flow-control and general logic helpers, including `foreach` functionality and global event handling.
-macros.lsl | Mostly Rife-internal utility macro definitions.
-main.lsl | Includes all other Rife files. This is what you end up wanting to include in your scripts to use Rife.
-math.lsl | Math helpers & additional functionality
-strings.lsl | String manipulation helpers, including common string operations that the standard Linden library is suspiciously devoid of.
+raft/debug.lsl | Debug output helpers with support for multiple output levels
+raft/env.lsl | Environmental detection & information; raycasting, pathfinding, time & date, etc.
+raft/http.lsl | HTTP & communication helpers, simple packet encoder/decoder/bundlers.
+raft/kfm.lsl | Keyframed Motion helpers; supporting specifying global coordinates instead of relative coordinates for KFM commands.
+raft/listargs.lsl | Support for handling llSetPrimitiveParam-style key-multivalue strided configuration lists, including the ability to merge user-provided configuration lists with defaults.
+raft/lists.lsl | List management helpers, including quick functions to get key-value 'associative' list pair data by key.
+raft/logic.lsl | Some flow-control and general logic helpers, including `foreach` functionality and global event handling.
+raft/macros.lsl | Mostly Rife-internal utility macro definitions.
+raft/main.lsl | Includes all other Rife files. This is what you end up wanting to include in your scripts to use Rife.
+raft/math.lsl | Math helpers & additional functionality
+raft/strings.lsl | String manipulation helpers, including common string operations that the standard Linden library is suspiciously devoid of.
 
-A full overview of the new functionality provided may be found on the [project wiki](https://github.com/arbitar/rife-lsl/wiki).
