@@ -59,3 +59,8 @@ raft/main.lsl | Includes all other Rife files. This is what you end up wanting t
 raft/math.lsl | Math helpers & additional functionality
 raft/strings.lsl | String manipulation helpers, including common string operations that the standard Linden library is suspiciously devoid of.
 
+File | Functionality
+--- | ---
+imp/http_packets.lsl | Simple SL message packet format. Formerly part of `raft/http.lsl`, now a separate file classified as implementation. The functions keep their names for backwards compatibility.
+imp/http_fetch.lsl | A proposed implementation that resolves common tasks while working with `raft/http.lsl`.
+
