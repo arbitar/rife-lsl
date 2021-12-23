@@ -2,9 +2,11 @@
 #include "raft/debug.lsl"
 #include "raft/env.lsl"
 #include "raft/http.lsl"
+#include "imp/http_packets.lsl"
 #include "raft/kfm.lsl"
 #include "raft/listargs.lsl"
 #include "raft/lists.lsl"
 #include "raft/logic.lsl"
 #include "raft/macros.lsl"
 #include "raft/math.lsl"
+
