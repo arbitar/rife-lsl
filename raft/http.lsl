@@ -105,16 +105,12 @@
   key rrHTTPSendRequest(string url, list params, string body) {
     // Set custom headers
     integer hlen = llGetListLength(CUSTOM_HEADERS);
-
-    string mimeType = "";
     if ((hlen >= 2) && (hlen % 2 == 0)) {
       integer ptr;
       for (ptr = 0; ptr < hlen; ptr+=2) {
         string name = llList2String(CUSTOM_HEADERS, ptr);
         string value = llList2String(CUSTOM_HEADERS, ptr+1);
-
         params += [
-          HTTP_CUSTOM_HEADER,
           name, value
         ];
       }
