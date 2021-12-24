@@ -26,6 +26,7 @@ showConfig(list cfg) {
 default {
   state_entry() {
     llSay(0, "Ready, touch to parse notecard " + NOTECARD_NAME + "...");
+    llSetText("raft-notecard-ini-test.lsl", <1.0, 0.0, 0.0>, 1.0);
   }
   
   touch_start(integer i) {
