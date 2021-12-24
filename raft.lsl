@@ -9,4 +9,5 @@
 #include "raft/logic.lsl"
 #include "raft/macros.lsl"
 #include "raft/math.lsl"
+#include "raft/notecard.lsl"
 

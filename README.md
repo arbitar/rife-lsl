@@ -58,6 +58,7 @@ raft/macros.lsl | Mostly Rife-internal utility macro definitions.
 raft/main.lsl | Includes all other Rife files. This is what you end up wanting to include in your scripts to use Rife.
 raft/math.lsl | Math helpers & additional functionality
 raft/strings.lsl | String manipulation helpers, including common string operations that the standard Linden library is suspiciously devoid of.
+raft/notecard.lsl | Parsers to easily use notecards as configuration files.
 
 File | Functionality
 --- | ---
