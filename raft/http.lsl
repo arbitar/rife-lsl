@@ -103,20 +103,8 @@
 	}
 
   key rrHTTPSendRequest(string url, list params, string body) {
-    // Set custom headers
-    integer hlen = llGetListLength(CUSTOM_HEADERS);
-    if ((hlen >= 2) && (hlen % 2 == 0)) {
-      integer ptr;
-      for (ptr = 0; ptr < hlen; ptr+=2) {
-        string name = llList2String(CUSTOM_HEADERS, ptr);
-        string value = llList2String(CUSTOM_HEADERS, ptr+1);
-        params += [
-          name, value
-        ];
-      }
-    }
+    params += CUSTOM_HEADERS;
     CUSTOM_HEADERS = [];
-
     $TRACE("\n\n" + url + "\n"
       + llDumpList2String(params, " # ") + "\n"
       + body + "\n"
@@ -128,7 +116,7 @@
   // Add a custom header to be added to the request.
   // CUSTOM_HEADERS is emptied after the request is sent.
   rrHTTPSetHeader(string name, string value) {
-    CUSTOM_HEADERS += [name, value];
+    CUSTOM_HEADERS += [HTTP_CUSTOM_HEADER, name, value];
   }
 
   rrHTTPSetMimeType(string mimeType) {
